@@ -5,14 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>hu.uni.miskolc.iit.igml.editor</groupId>
-    <artifactId>IndoorEdy</artifactId>
+    <artifactId>DAO</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>MODEL</module>
-        <module>DAO</module>
-        <module>DAO-XML</module>
-    </modules>
-
+    <dependencies>
+    <dependency>
+        <groupId>hu.uni.miskolc.iit.igml.editor</groupId>
+        <artifactId>MODEL</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+    </dependencies>
+    
 </project>

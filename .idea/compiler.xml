@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="IndoorEdy" />
+        <module name="DAO" />
+        <module name="DAO-XML" />
+        <module name="MODEL" />
       </profile>
     </annotationProcessing>
   </component>
