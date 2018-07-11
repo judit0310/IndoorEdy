@@ -1,4 +1,4 @@
-package hu.iit.uni.miskolc.hu.igml.test;
+package java.hu.iit.uni.miskolc.hu.igml.test;
 
 import net.opengis.indoorgml.core.v_1_0.CellSpaceMemberType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
@@ -23,9 +23,16 @@ public class DozerCellSpaceMapperTest {
         List<CellSpaceMemberType> cellSpaceMemberTypeList=new ArrayList<>();
         cellSpaceMemberTypeList=indoorFeaturesType.getPrimalSpaceFeatures().getPrimalSpaceFeatures().getCellSpaceMember();
 
-        System.out.println("ID of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue());
-        System.out.println("Data of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue().toString());
-        JAXBElement<? extends CellSpaceType> cellSpaceTypeSpecific=cellSpaceMemberTypeList.get(1).getCellSpace();
+        // System.out.println("ID of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue());
+        // System.out.println("Data of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue().toString());
+
+        JAXBElement<? extends CellSpaceType> cellSpaceTypeSpecific=cellSpaceMemberTypeList.get(0).getCellSpace()
+
+                
+        CellSpaceType cellSpaceType=(CellSpaceType) cellSpaceTypeSpecific;
+
+       DozerCellSpaceMapper dozerCellSpaceMapper=new DozerCellSpaceMapper();
+       dozerCellSpaceMapper.copyCellSpaceFromCellSpaceType(cellSpaceTypeSpecific);
 
         try {
             File fileForMarshalling = new File("C:\\Users\\Foxx\\Desktop\\generatedFile.xml");

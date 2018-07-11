@@ -27,7 +27,7 @@ public class DozerCellSpaceMapper {
     *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
     */
     public CellSpaceType copyCellSpaceTypeFromCellSpace(CellSpace cellSpace) {
-        final CellSpaceType cellSpaceType=mapper.map(cellSpace, CellSpaceType.class);
+        CellSpaceType cellSpaceType=mapper.map(cellSpace, CellSpaceType.class);
         return cellSpaceType;
     }
 
@@ -36,7 +36,7 @@ public class DozerCellSpaceMapper {
      *  @return instance of {@link indoorgml.iit.core.CellSpace}
      */
     public CellSpace copyCellSpaceFromCellSpaceType(CellSpaceType cellSpaceType){
-        final CellSpace cellSpace=mapper.map(cellSpaceType,CellSpace.class);
+        CellSpace cellSpace=mapper.map(cellSpaceType,CellSpace.class);
         return cellSpace;
     }
 }
