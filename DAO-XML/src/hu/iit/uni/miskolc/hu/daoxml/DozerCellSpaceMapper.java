@@ -4,6 +4,7 @@ import indoorgml.iit.core.CellSpace;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
 import org.dozer.DozerBeanMapper;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class DozerCellSpaceMapper {
     static final DozerBeanMapper mapper = new DozerBeanMapper();
 
     static {
+
         final List<String> mappingFilesNames = new ArrayList<>();
         mappingFilesNames.add("DozerCellSpaceMapping.xml");
         mapper.setMappingFiles(mappingFilesNames);

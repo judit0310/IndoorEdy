@@ -47,6 +47,29 @@
             <systemPath>${project.basedir}/lib/indoorgml-v_1_0-2.6.2-SNAPSHOT.jar</systemPath>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.jvnet.jaxb2_commons/jaxb2-basics-runtime -->
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-runtime</artifactId>
+            <version>1.11.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jvnet.ogc/gml-v_3_2_1 -->
+        <dependency>
+            <groupId>org.jvnet.ogc</groupId>
+            <artifactId>gml-v_3_2_1</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
-    
 </project>

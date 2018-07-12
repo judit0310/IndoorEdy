@@ -36,6 +36,5 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/indoorgml-v_1_0-2.6.2-SNAPSHOT.jar</systemPath>
         </dependency>
-
     </dependencies>
 </project>
