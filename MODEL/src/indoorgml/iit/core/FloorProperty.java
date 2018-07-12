@@ -2,7 +2,8 @@ package indoorgml.iit.core;
 
 import java.io.Serializable;
 
-import net.opengis.indoorgml.geometry.Point;
+import indoorgml.iit.geometry.Point;
+
 
 public class FloorProperty implements Serializable {
     /**

@@ -1,9 +1,10 @@
 package java.hu.iit.uni.miskolc.hu.igml.test;
 
+import hu.iit.uni.miskolc.hu.daoxml.DozerCellSpaceMapper;
+import indoorgml.iit.core.CellSpace;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceMemberType;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
-import hu.iit.uni.miskolc.hu.daoxml.*;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -26,28 +27,29 @@ public class DozerCellSpaceMapperTest {
         // System.out.println("ID of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue());
         // System.out.println("Data of first cellSpace: " + cellSpaceMemberTypeList.get(0).getCellSpace().getValue().toString());
 
-        JAXBElement<? extends CellSpaceType> cellSpaceTypeSpecific=cellSpaceMemberTypeList.get(0).getCellSpace()
+        System.out.println("First CellSpace of the CellSpaceMemberList:");
+        CellSpaceType cellSpaceTypeSpecific= cellSpaceMemberTypeList.get(0).getCellSpace().getValue();
+        DozerCellSpaceMapper dozerCellSpaceMapper=new DozerCellSpaceMapper();
+        CellSpace cellSpaceSpecific=dozerCellSpaceMapper.copyCellSpaceFromCellSpaceType(cellSpaceTypeSpecific);
 
-                
-        CellSpaceType cellSpaceType=(CellSpaceType) cellSpaceTypeSpecific;
+        System.out.println("\nName of the first CellSpace:");
+        System.out.println(cellSpaceSpecific.getName());
 
-       DozerCellSpaceMapper dozerCellSpaceMapper=new DozerCellSpaceMapper();
-       dozerCellSpaceMapper.copyCellSpaceFromCellSpaceType(cellSpaceTypeSpecific);
 
-        try {
-            File fileForMarshalling = new File("C:\\Users\\Foxx\\Desktop\\generatedFile.xml");
-            JAXBContext jaxbContextForMarshalling = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0:net.opengis.indoorgml.navigation.v_1_0");
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            System.out.println("\nGenerated file content:");
-            jaxbMarshaller.marshal(cellSpaceTypeSpecific, System.out);
-            jaxbMarshaller.marshal(cellSpaceTypeSpecific, fileForMarshalling);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            File fileForMarshalling = new File("C:\\Users\\Foxx\\Desktop\\generatedFile.xml");
+//            JAXBContext jaxbContextForMarshalling = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0:net.opengis.indoorgml.navigation.v_1_0");
+//            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//
+//            // output pretty printed
+//            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//
+//            System.out.println("\nGenerated file content:");
+//            jaxbMarshaller.marshal(cellSpaceTypeSpecific, System.out);
+//            jaxbMarshaller.marshal(cellSpaceTypeSpecific, fileForMarshalling);
+//
+//        } catch (JAXBException e) {
+//            e.printStackTrace();
+//        }
     }
 }
