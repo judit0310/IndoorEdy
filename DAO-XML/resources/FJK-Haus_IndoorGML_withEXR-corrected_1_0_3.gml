@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<IndoorFeatures xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/indoorgml/1.0/core" xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core indoorgmlcore.xsd" gml:id="IFs">
+<IndoorFeatures xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/indoorgml/1.0/core" xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core indoorgmlcore.xsd" gml:id="II">
   <primalSpaceFeatures>
     <PrimalSpaceFeatures gml:id="PS1">
       <cellSpaceMember>

@@ -14,4 +14,25 @@
         <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceType</class-a>
         <class-b>indoorgml.iit.core.CellSpace</class-b>
     </mapping>
+
+    <mapping>
+        <class-a>net.opengis.gml.v_3_2_1.AbstractGMLType</class-a>
+        <class-b>indoorgml.iit.core.AbstractFeature</class-b>
+        <field>
+            <a>id</a>
+            <b>gmlID</b>
+        </field>
+    </mapping>
+
+
+
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType</class-a>
+        <class-b>indoorgml.iit.core.IndoorFeatures</class-b>
+        <field>
+            <a></a>
+            <b></b>
+        </field>
+    </mapping>
 </mappings>
