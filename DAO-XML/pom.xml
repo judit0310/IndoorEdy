@@ -72,9 +72,6 @@
 
 
         <!--  ************************************************************************* -->
-
-
-
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -95,7 +92,5 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
-
-
     </dependencies>
 </project>
