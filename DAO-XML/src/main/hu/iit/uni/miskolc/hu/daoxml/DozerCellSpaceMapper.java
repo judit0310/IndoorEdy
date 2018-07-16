@@ -3,10 +3,7 @@ package hu.iit.uni.miskolc.hu.daoxml;
 import indoorgml.iit.core.CellSpace;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
 import org.dozer.DozerBeanMapper;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class DozerCellSpaceMapper {
 
@@ -15,25 +12,16 @@ public class DozerCellSpaceMapper {
      * @author Boro T.
      */
 
-    static String file="resources/DozerCellSpaceMapping.xml";
-    static DozerBeanMapper mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
+    private static DozerBeanMapper mapper;
 
-//    static {
-//       DozerBeanMapper mapper = new DozerBeanMapper();
-//         String file="resources/DozerCellSpaceMapping.xml";
-//         mapper.setMappingFiles(Arrays.asList(new String[]{file}));
-
-
-
-         // DozerBeanMapper mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
-           //List<String> mappingFilesNames = new ArrayList<>();
-           //mappingFilesNames.add("resources/DozerCellSpaceMapping.xml");
-
-
+    static {
+        String file = "resources/DozerCellSpaceMapping.xml";
+        DozerCellSpaceMapper.mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
+    }
     /*
-    *  @param  instance of {@link indoorgml.iit.core.CellSpace}
-    *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
-    */
+     *  @param  instance of {@link indoorgml.iit.core.CellSpace}
+     *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
+     */
     public CellSpaceType copyCellSpaceTypeFromCellSpace(CellSpace cellSpace) {
         CellSpaceType cellSpaceType=mapper.map(cellSpace, CellSpaceType.class);
         return cellSpaceType;
