@@ -1,18 +1,17 @@
 package hu.iit.uni.miskolc.hu.igml.test;
 
-
-import hu.iit.uni.miskolc.hu.daoxml.DozerIndoorFeaturesMapper;
-import indoorgml.iit.core.IndoorFeatures;
-import net.opengis.gml.v_3_2_1.CodeType;
+import hu.iit.uni.miskolc.hu.daoxml.DozerPrimarySpaceFeatureMapper;
+import indoorgml.iit.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.junit.Test;
 
-
-import javax.xml.bind.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
+public class TestDozerPrimalSpaceFeaturesMapper {
 
-public class TestDozerIndoorFeaturesMapper {
 
     @Test
     public void unmarshallGetIndoorFeatures() throws JAXBException {
@@ -24,9 +23,10 @@ public class TestDozerIndoorFeaturesMapper {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         IndoorFeaturesType indoorFeaturesType = (IndoorFeaturesType) ((javax.xml.bind.JAXBElement) jaxbUnmarshaller.unmarshal(file)).getValue();
 
-        DozerIndoorFeaturesMapper dozerIndoorFeaturesMapper = new DozerIndoorFeaturesMapper();
-        IndoorFeatures indoorFeaturesSpecific=dozerIndoorFeaturesMapper.copyIndoorFeaturesFromIndoorFeaturesType(indoorFeaturesType);
+        DozerPrimarySpaceFeatureMapper dozerPrimarySpaceFeatureMapper = new DozerPrimarySpaceFeatureMapper();
+        PrimalSpaceFeatures primalSpaceFeatures=dozerPrimarySpaceFeatureMapper.copyPrimalSpaceFeatureFromPrimalSpaceFeaturePropertyType(indoorFeaturesType.getPrimalSpaceFeatures());
 
-        System.out.println(indoorFeaturesSpecific.getGmlID() +"  "+ indoorFeaturesSpecific.getName() +" ");
+        System.out.println(primalSpaceFeatures.getGmlID());
+         System.out.println(primalSpaceFeatures.getCellSpaceOnFloors().size());
     }
 }

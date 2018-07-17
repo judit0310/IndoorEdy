@@ -11,11 +11,6 @@
     </configuration>
 
     <mapping>
-        <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceType</class-a>
-        <class-b>indoorgml.iit.core.CellSpace</class-b>
-    </mapping>
-
-    <mapping>
         <class-a>net.opengis.gml.v_3_2_1.AbstractGMLType</class-a>
         <class-b>indoorgml.iit.core.AbstractFeature</class-b>
         <field>
@@ -24,15 +19,29 @@
         </field>
     </mapping>
 
-
-
-
     <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType</class-a>
         <class-b>indoorgml.iit.core.IndoorFeatures</class-b>
         <field>
-            <a></a>
-            <b></b>
+            <a set-method="setPrimalSpaceFeatures" get-method="getPrimalSpaceFeatures">PrimalSpaceFeaturesPropertyType</a>
+            <b>PrimalSpaceFeatures</b>
         </field>
+
+        <field>
+            <a set-method="setMultiLayeredGraph" get-method="getMultiLayeredGraph">MultiLayeredGraphPropertyType</a>
+            <b>MultiLayeredGraph</b>
+        </field>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType</class-a>
+        <class-b>indoorgml.iit.core.PrimalSpaceFeatures</class-b>
+    </mapping>
+
+
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceType</class-a>
+        <class-b>indoorgml.iit.core.CellSpace</class-b>
     </mapping>
 </mappings>

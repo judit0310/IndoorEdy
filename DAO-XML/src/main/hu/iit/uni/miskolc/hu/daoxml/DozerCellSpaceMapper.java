@@ -37,15 +37,4 @@ public class DozerCellSpaceMapper {
         CellSpace cellSpace=mapper.map(cellSpaceType,CellSpace.class);
         return cellSpace;
     }
-
-
-    public IndoorFeaturesType copyIndoorFeaturesTypeFromIndoorFeatures(IndoorFeatures indoorFeatures) {
-        IndoorFeaturesType indoorFeaturesType=mapper.map(indoorFeatures, IndoorFeaturesType.class);
-        return indoorFeaturesType;
-    }
-
-    public IndoorFeatures copyIndoorFeaturesFromIndoorFeaturesType(IndoorFeaturesType indoorFeaturesType){
-        IndoorFeatures indoorFeatures=mapper.map(indoorFeaturesType,IndoorFeatures.class);
-        return indoorFeatures;
-    }
 }
