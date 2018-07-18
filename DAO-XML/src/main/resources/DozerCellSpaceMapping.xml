@@ -38,7 +38,10 @@
         <class-b>indoorgml.iit.core.PrimalSpaceFeatures</class-b>
     </mapping>
 
-
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceMemberType</class-a>
+        <class-b>indoorgml.iit.core.CellSpaceMemberOwn</class-b>
+    </mapping>
 
     <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceType</class-a>
