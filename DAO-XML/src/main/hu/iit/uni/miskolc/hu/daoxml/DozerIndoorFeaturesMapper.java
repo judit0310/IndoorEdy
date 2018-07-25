@@ -1,8 +1,6 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 
-import indoorgml.iit.core.CellSpace;
-import indoorgml.iit.core.IndoorFeatures;
-import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
+import net.opengis.indoorgml.core.IndoorFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.dozer.DozerBeanMapper;
 import java.util.Arrays;

@@ -1,12 +1,7 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 
-import indoorgml.iit.core.CellSpace;
-import indoorgml.iit.core.IndoorFeatures;
-import indoorgml.iit.core.PrimalSpaceFeatures;
-import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
-import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
+import net.opengis.indoorgml.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType;
-import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesType;
 import org.dozer.DozerBeanMapper;
 
 import java.util.Arrays;
@@ -25,7 +20,7 @@ public class DozerPrimarySpaceFeatureMapper {
         mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
     }
     /*
-     *  @param  instance of {@link indoorgml.iit.core.PrimalSpaceFeatures}
+     *  @param  instance of {@link PrimalSpaceFeatures}
      *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturePropertyType}
      */
     public PrimalSpaceFeaturesPropertyType copyPrimalSpaceFeaturesPropertyTypeFromPrimalSpaceFeatures(PrimalSpaceFeatures primalSpaceFeatures) {
@@ -35,7 +30,7 @@ public class DozerPrimarySpaceFeatureMapper {
 
     /*
      *  @param  instance of {@link net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturePropertyType}
-     *  @return instance of {@link indoorgml.iit.core.PrimalSpaceFeatures}
+     *  @return instance of {@link PrimalSpaceFeatures}
      */
     public PrimalSpaceFeatures copyPrimalSpaceFeatureFromPrimalSpaceFeaturePropertyType(PrimalSpaceFeaturesPropertyType primalSpaceFeaturesPropertyType){
         PrimalSpaceFeatures primalSpaceFeatures=mapper.map(primalSpaceFeaturesPropertyType,PrimalSpaceFeatures.class);

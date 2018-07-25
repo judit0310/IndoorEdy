@@ -1,8 +1,9 @@
 package hu.iit.uni.miskolc.hu.igml.test;
 
 import hu.iit.uni.miskolc.hu.daoxml.DozerPrimarySpaceFeatureMapper;
-import indoorgml.iit.core.PrimalSpaceFeatures;
+import net.opengis.indoorgml.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
+import net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesType;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
@@ -25,6 +26,7 @@ public class TestDozerPrimalSpaceFeaturesMapper {
 
         DozerPrimarySpaceFeatureMapper dozerPrimarySpaceFeatureMapper = new DozerPrimarySpaceFeatureMapper();
         PrimalSpaceFeatures primalSpaceFeatures=dozerPrimarySpaceFeatureMapper.copyPrimalSpaceFeatureFromPrimalSpaceFeaturePropertyType(indoorFeaturesType.getPrimalSpaceFeatures());
+        PrimalSpaceFeaturesType primalSpaceFeaturesType=indoorFeaturesType.getPrimalSpaceFeatures().getPrimalSpaceFeatures();
 
         System.out.println(primalSpaceFeatures.getGmlID());
          System.out.println(primalSpaceFeatures.getCellSpaceOnFloors().size());

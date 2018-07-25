@@ -2,15 +2,14 @@ package hu.iit.uni.miskolc.hu.igml.test;
 
 
 import hu.iit.uni.miskolc.hu.daoxml.DozerIndoorFeaturesMapper;
-import indoorgml.iit.core.IndoorFeatures;
-import net.opengis.gml.v_3_2_1.CodeType;
+import net.opengis.indoorgml.core.IndoorFeatures;
+import net.opengis.indoorgml.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.junit.Test;
 
 
 import javax.xml.bind.*;
 import java.io.File;
-
 
 public class TestDozerIndoorFeaturesMapper {
 

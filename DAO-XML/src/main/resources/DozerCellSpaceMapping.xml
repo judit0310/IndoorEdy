@@ -12,7 +12,7 @@
 
     <mapping>
         <class-a>net.opengis.gml.v_3_2_1.AbstractGMLType</class-a>
-        <class-b>indoorgml.iit.core.AbstractFeature</class-b>
+        <class-b>net.opengis.indoorgml.core.AbstractFeature</class-b>
         <field>
             <a>id</a>
             <b>gmlID</b>
@@ -20,8 +20,13 @@
     </mapping>
 
     <mapping>
+        <class-a>net.opengis.gml.v_3_2_1.AbstractFeatureType</class-a>
+        <class-b>net.opengis.indoorgml.core.AbstractFeature</class-b>
+    </mapping>
+
+    <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType</class-a>
-        <class-b>indoorgml.iit.core.IndoorFeatures</class-b>
+        <class-b>net.opengis.indoorgml.core.IndoorFeatures</class-b>
         <field>
             <a set-method="setPrimalSpaceFeatures" get-method="getPrimalSpaceFeatures">PrimalSpaceFeaturesPropertyType</a>
             <b>PrimalSpaceFeatures</b>
@@ -35,16 +40,56 @@
 
     <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesPropertyType</class-a>
-        <class-b>indoorgml.iit.core.PrimalSpaceFeatures</class-b>
+        <class-b>net.opengis.indoorgml.core.PrimalSpaceFeatures</class-b>
     </mapping>
 
     <mapping>
-        <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceMemberType</class-a>
-        <class-b>indoorgml.iit.core.CellSpaceMemberOwn</class-b>
+        <class-a>net.opengis.indoorgml.core.v_1_0.MultiLayeredGraphType</class-a>
+        <class-b>net.opengis.indoorgml.core.MultiLayeredGraph</class-b>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.SpaceLayerType</class-a>
+        <class-b> net.opengis.indoorgml.core.SpaceLayer</class-b>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.SpaceLayersType</class-a>
+        <class-b> net.opengis.indoorgml.core.SpaceLayers</class-b>
     </mapping>
 
     <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceType</class-a>
-        <class-b>indoorgml.iit.core.CellSpace</class-b>
+        <class-b>net.opengis.indoorgml.core.CellSpace</class-b>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.v_1_0.CellSpaceBoundaryType</class-a>
+        <class-b>net.opengis.indoorgml.core.CellSpaceBoundary</class-b>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.gml.v_3_2_1.PointType</class-a>
+        <class-b>net.opengis.indoorgml.geometry.Point</class-b>
+    </mapping>
+
+    <mapping>
+        <class-a>net.opengis.indoorgml.core.Nodes</class-a>
+        <class-b>net.opengis.indoorgml.core.v_1_0.NodesType</class-b>
+        <field>
+            <a set-method="setStateOnFloors" get-method="getStateOnFloors">stateOnFloor</a>
+            <b>stateMember</b>
+        </field>
+    </mapping>
+
+    <mapping type="bi-directional">
+        <class-a>net.opengis.indoorgml.core.v_1_0.PrimalSpaceFeaturesType</class-a>
+        <class-b>net.opengis.indoorgml.core.CellSpaceOnFloor</class-b>
+
+        <field>
+            <a set-method="setCellSpaceMember" get-method="getCellSpaceMember">cellSpaceMember</a>
+            <b set-method="setCellSpaceMember" get-method="getCellSpaceMember">stateMember</b>
+        </field>
+
     </mapping>
 </mappings>

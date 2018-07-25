@@ -1,4 +1,4 @@
-package indoorgml.iit.core;
+package net.opengis.indoorgml.core;
 
 import java.io.Serializable;
 

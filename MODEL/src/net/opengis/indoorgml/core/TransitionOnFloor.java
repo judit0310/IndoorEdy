@@ -1,9 +1,10 @@
-package indoorgml.iit.core;
+package net.opengis.indoorgml.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
+import net.opengis.indoorgml.core.Floor;
+import net.opengis.indoorgml.core.Transition;
 
 public class TransitionOnFloor extends Floor implements Serializable {
 	/**

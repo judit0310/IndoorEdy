@@ -1,9 +1,7 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 
-import indoorgml.iit.core.CellSpace;
-import indoorgml.iit.core.IndoorFeatures;
+import net.opengis.indoorgml.core.CellSpace;
 import net.opengis.indoorgml.core.v_1_0.CellSpaceType;
-import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.dozer.DozerBeanMapper;
 import java.util.Arrays;
 
@@ -21,7 +19,7 @@ public class DozerCellSpaceMapper {
         DozerCellSpaceMapper.mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
     }
     /*
-     *  @param  instance of {@link indoorgml.iit.core.CellSpace}
+     *  @param  instance of {@link CellSpace}
      *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
      */
     public CellSpaceType copyCellSpaceTypeFromCellSpace(CellSpace cellSpace) {
@@ -31,7 +29,7 @@ public class DozerCellSpaceMapper {
 
     /*
      *  @param  instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
-     *  @return instance of {@link indoorgml.iit.core.CellSpace}
+     *  @return instance of {@link CellSpace}
      */
     public CellSpace copyCellSpaceFromCellSpaceType(CellSpaceType cellSpaceType){
         CellSpace cellSpace=mapper.map(cellSpaceType,CellSpace.class);
