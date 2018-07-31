@@ -2,7 +2,7 @@
 <IndoorFeatures xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.opengis.net/indoorgml/1.0/core" xsi:schemaLocation="http://www.opengis.net/indoorgml/1.0/core indoorgmlcore.xsd" gml:id="II">
   <primalSpaceFeatures>
     <PrimalSpaceFeatures gml:id="PS1">
-      <cellSpaceMember>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C1">
           <gml:name>002</gml:name>
           <cellSpaceGeometry>
@@ -231,8 +231,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C3">
           <gml:name>001</gml:name>
           <cellSpaceGeometry>
@@ -811,8 +811,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C4">
           <gml:name>006</gml:name>
           <cellSpaceGeometry>
@@ -971,8 +971,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C6">
           <gml:name>005</gml:name>
           <cellSpaceGeometry>
@@ -1201,8 +1201,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C8">
           <gml:name>003</gml:name>
           <cellSpaceGeometry>
@@ -1431,8 +1431,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C10">
           <gml:name>004</gml:name>
           <cellSpaceGeometry>
@@ -1731,8 +1731,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C12">
           <gml:name>101</gml:name>
           <cellSpaceGeometry>
@@ -2441,8 +2441,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C13">
           <gml:name>104</gml:name>
           <cellSpaceGeometry>
@@ -2671,8 +2671,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C15">
           <gml:name>102</gml:name>
           <cellSpaceGeometry>
@@ -3291,8 +3291,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C19">
           <gml:name>103</gml:name>
           <cellSpaceGeometry>
@@ -3581,8 +3581,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C21">
           <gml:name>202</gml:name>
           <cellSpaceGeometry>
@@ -4031,8 +4031,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C23">
           <gml:name>201</gml:name>
           <cellSpaceGeometry>
@@ -4801,8 +4801,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C25">
           <gml:name>204</gml:name>
           <cellSpaceGeometry>
@@ -5121,8 +5121,8 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
-      <cellSpaceMember>
+      </cellSpaceMemberList>
+      <cellSpaceMemberList>
         <CellSpace gml:id="C26">
           <gml:name>203</gml:name>
           <cellSpaceGeometry>
@@ -5424,7 +5424,7 @@
             </externalObject>
           </externalReference>
         </CellSpace>
-      </cellSpaceMember>
+      </cellSpaceMemberList>
     </PrimalSpaceFeatures>
   </primalSpaceFeatures>
   <multiLayeredGraph>

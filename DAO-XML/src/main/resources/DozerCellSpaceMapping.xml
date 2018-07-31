@@ -87,7 +87,7 @@
         <class-b>net.opengis.indoorgml.core.CellSpaceOnFloor</class-b>
 
         <field>
-            <a set-method="setCellSpaceMember" get-method="getCellSpaceMember">cellSpaceMember</a>
+            <a set-method="setCellSpaceMember" get-method="getCellSpaceMember">cellSpaceMemberList</a>
             <b set-method="setCellSpaceMember" get-method="getCellSpaceMember">stateMember</b>
         </field>
 
