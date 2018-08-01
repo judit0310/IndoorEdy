@@ -8,11 +8,11 @@ public class LinearRingGml {
 
     //Contains coordinates list of a cellspace
 
-    private List<?> posOrPointPropertyOrPointRep;
-    private ArrayList<DirectPosition> posList;
+    private List<DirectPosition> posOrPointPropertyOrPointRep;  // ---->
+    private DirectPositionList posList;
     private CoordinatesGml coordinates;
 
-    public LinearRingGml(List<JAXBElement<?>> posOrPointPropertyOrPointRep, ArrayList<DirectPosition> posList, CoordinatesGml coordinates) {
+    public LinearRingGml(List<DirectPosition> posOrPointPropertyOrPointRep, DirectPositionList posList, CoordinatesGml coordinates) {
         this.posOrPointPropertyOrPointRep = posOrPointPropertyOrPointRep;
         this.posList = posList;
         this.coordinates = coordinates;
@@ -21,19 +21,21 @@ public class LinearRingGml {
     public LinearRingGml() {
     }
 
+
+
     public List<?> getPosOrPointPropertyOrPointRep() {
         return posOrPointPropertyOrPointRep;
     }
 
-    public void setPosOrPointPropertyOrPointRep(List<?> posOrPointPropertyOrPointRep) {
+    public void setPosOrPointPropertyOrPointRep(List<DirectPosition> posOrPointPropertyOrPointRep) {
         this.posOrPointPropertyOrPointRep = posOrPointPropertyOrPointRep;
     }
 
-    public ArrayList<DirectPosition> getPosList() {
+    public DirectPositionList getPosList() {
         return posList;
     }
 
-    public void setPosList(ArrayList<DirectPosition> posList) {
+    public void setPosList(DirectPositionList posList) {
         this.posList = posList;
     }
 

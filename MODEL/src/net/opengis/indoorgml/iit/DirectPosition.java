@@ -3,21 +3,22 @@ package net.opengis.indoorgml.iit;
 import java.util.ArrayList;
 
 /*
-*  Contains coordinates of a position.
+*  Contains coordinates of a position / Point.
 */
 public class DirectPosition {
-    public DirectPosition(ArrayList<Double> posCoordinates) {
-        this.posCoordinates = posCoordinates;
+
+    private ArrayList<Double> coordinatesOfPoint;  ///------> END
+
+    public DirectPosition(ArrayList<Double> coordinatesOfPoint) {
+        this.coordinatesOfPoint = coordinatesOfPoint;
     }
 
-    public ArrayList<Double> getPosCoordinates() {
-        return posCoordinates;
+    public ArrayList<Double> getCoordinatesOfPoint() {
+        return coordinatesOfPoint;
     }
 
-    public void setPosCoordinates(ArrayList<Double> posCoordinates) {
-        this.posCoordinates = posCoordinates;
+    public void setCoordinatesOfPoint(ArrayList<Double> coordinatesOfPoint) {
+        this.coordinatesOfPoint = coordinatesOfPoint;
     }
-
-    private ArrayList<Double> posCoordinates;
 
 }

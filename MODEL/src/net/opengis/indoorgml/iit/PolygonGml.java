@@ -6,6 +6,13 @@ public class PolygonGml {
     private LinearRingGml exterior;
     private List<LinearRingGml> interior;
 
+    public PolygonGml(){ }
+
+    public PolygonGml(LinearRingGml exterior, List<LinearRingGml> interiror) {
+        this.exterior = exterior;
+        this.interior = interior;
+    }
+
     public List<LinearRingGml> getInterior() {
         return interior;
     }
@@ -14,22 +21,9 @@ public class PolygonGml {
         this.interior = interior;
     }
 
-
-
-    public PolygonGml(LinearRingGml exterior, List<LinearRingGml> interiror) {
-        this.exterior = exterior;
-        this.interiror = interiror;
-    }
-
     public List<LinearRingGml> getInteriror() {
-        return interiror;
+        return interior;
     }
-
-    public void setInteriror(List<LinearRingGml> interiror) {
-        this.interiror = interiror;
-    }
-
-    private List<LinearRingGml> interiror;
 
     public LinearRingGml getExterior() {
         return exterior;

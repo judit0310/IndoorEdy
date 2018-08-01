@@ -16,7 +16,7 @@ public class CellSpace extends AbstractFeature implements Serializable {
     private static int labelNumber = 1;
 
     private Solid geometry3D;
-    private Polygon geometry2D;
+    private Polygon geometry2D; // ---->
     private State duality;
     private String externalReference;
     private ArrayList<net.opengis.indoorgml.core.CellSpaceBoundary> partialBoundedBy;
@@ -61,7 +61,7 @@ public class CellSpace extends AbstractFeature implements Serializable {
         return geometry2D;
     }
 
-    public void setGeometry2D(Polygon geometry2d) {
+    public void setGeometry2D(PolygonGml geometry2d) {
         geometry2D = geometry2d;
     }
 
