@@ -1,9 +1,6 @@
 package hu.iit.uni.miskolc.hu.daoxml;
-import net.opengis.gml.v_3_2_1.DirectPositionType;
-import net.opengis.gml.v_3_2_1.LinearRingType;
-import net.opengis.gml.v_3_2_1.PolygonType;
+import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.*;
-import net.opengis.indoorgml.geometry.Polygon;
 import net.opengis.indoorgml.iit.*;
 
 import javax.xml.bind.JAXBElement;
@@ -11,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mapper {
-
 
     public IndoorFeatures indoorFeaturesMapper (IndoorFeatures target ,IndoorFeaturesType indoorFeaturesType){
         MultiLayeredGraph multiLayeredGraph = createMultiLayeredGraph(null, indoorFeaturesType.getMultiLayeredGraph());
@@ -33,7 +29,7 @@ public class Mapper {
             JAXBElement<CellSpaceType> jCellSpaceType = (JAXBElement<CellSpaceType>) cellSpaceMemberType.getCellSpace();
             CellSpaceType cellSpaceType = jCellSpaceType.getValue();
 
-            CellSpace cellSpace = createCellSpace(cellSpaceType);
+            CellSpace cellSpace = createCellSpace3D(cellSpaceType);
 
             cellSpaceList.add(cellSpace);
         }
@@ -68,15 +64,24 @@ public class Mapper {
     }
 
 
-    public CellSpace createCellSpace(CellSpaceType cellSpaceType) {
-        PolygonType polygonType = (PolygonType) cellSpaceType.getCellSpaceGeometry().getGeometry2D().getAbstractSurface().getValue();
-        LinearRingType linearRingType= (LinearRingType) polygonType.getExterior().getAbstractRing().getValue();
+    public CellSpace createCellSpace3D(CellSpaceType cellSpaceType) {
+        SolidType solidType = (SolidType) cellSpaceType.getCellSpaceGeometry().getGeometry3D().getAbstractSolid().getValue();
+        ShellType shellType= (ShellType) solidType.getExterior().getShell();
+
+        List<SurfacePropertyType> surfacePropertyTypeList=new ArrayList<SurfacePropertyType>();
+        surfacePropertyTypeList=shellType.getSurfaceMember();
+
+        surfacePropertyTypeList.get(0).getAbstractSurface();
+
+        (SurfacePatchArrayPropertyType) surfacePropertyTypeList.get(0).getAbstractSurface();
+
 
         List<DirectPosition> directPositionList=new ArrayList<DirectPosition>();
-        for(int i=0;i<linearRingType.getPosOrPointPropertyOrPointRep().size();i++){
-            DirectPosition directPosition= (DirectPosition) linearRingType.getPosOrPointPropertyOrPointRep().get(i).getValue();
+        for(int i=0;i<shellType.getSurfaceMember().size();i++){
+            DirectPosition directPosition =  (DirectPosition) linearRingType.getPosOrPointPropertyOrPointRep().get(i).getValue();
             directPositionList.add(directPosition);
         }
+
         LinearRingGml linearRingGml=new LinearRingGml();
         linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
 
@@ -88,8 +93,31 @@ public class Mapper {
         return target;
     }
 
-
     private MultiLayeredGraph createMultiLayeredGraph(Object o, MultiLayeredGraphPropertyType multiLayeredGraph) {
         return null;
     }
 }
+
+
+
+
+
+//    public CellSpace createCellSpace3D(CellSpaceType cellSpaceType) {
+//        PolygonType polygonType = (PolygonType) cellSpaceType.getCellSpaceGeometry().getGeometry3D().getAbstractSolid().getValue();
+//        LinearRingType linearRingType= (LinearRingType) polygonType.getExterior().getAbstractRing().getValue();
+//
+//        List<DirectPosition> directPositionList=new ArrayList<DirectPosition>();
+//        for(int i=0;i<linearRingType.getPosOrPointPropertyOrPointRep().size();i++){
+//            DirectPosition directPosition= (DirectPosition) linearRingType.getPosOrPointPropertyOrPointRep().get(i).getValue();
+//            directPositionList.add(directPosition);
+//        }
+//        LinearRingGml linearRingGml=new LinearRingGml();
+//        linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
+//
+//        PolygonGml polygonGml=new PolygonGml();
+//        polygonGml.setExterior(linearRingGml);
+//
+//        CellSpace target=new CellSpace();
+//        target.setGeometry2D(polygonGml);
+//        return target;
+//    }

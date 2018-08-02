@@ -7,7 +7,9 @@ import java.util.List;
 
 public class CellSpaceBoundaryMember {
 
-    public ArrayList<CellSpaceBoundary> getCellSpaceBoundaryMember() {
+    private List<CellSpaceBoundary> cellSpaceBoundaryMember;
+
+    public List<CellSpaceBoundary> getCellSpaceBoundaryMember() {
         return cellSpaceBoundaryMember;
     }
 
@@ -15,5 +17,5 @@ public class CellSpaceBoundaryMember {
         this.cellSpaceBoundaryMember = cellSpaceBoundaryMember;
     }
 
-    private ArrayList<CellSpaceBoundary> cellSpaceBoundaryMember;
+
 }

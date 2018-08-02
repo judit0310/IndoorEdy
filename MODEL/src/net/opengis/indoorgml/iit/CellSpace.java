@@ -4,7 +4,6 @@ import net.opengis.indoorgml.core.AbstractFeature;
 import net.opengis.indoorgml.core.CellSpaceBoundary;
 import net.opengis.indoorgml.core.State;
 import net.opengis.indoorgml.geometry.LineString;
-import net.opengis.indoorgml.geometry.Polygon;
 import net.opengis.indoorgml.geometry.Solid;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ public class CellSpace extends AbstractFeature implements Serializable {
     private static int labelNumber = 1;
 
     private Solid geometry3D;
-    private Polygon geometry2D; // ---->
+    private PolygonGml geometry2D; // ---->
     private State duality;
     private String externalReference;
     private ArrayList<net.opengis.indoorgml.core.CellSpaceBoundary> partialBoundedBy;
@@ -33,13 +32,14 @@ public class CellSpace extends AbstractFeature implements Serializable {
         setDescription("Usage", "Room");
     }
 
-    public CellSpace(net.opengis.indoorgml.iit.CellSpace other) {
+   /* public CellSpace(CellSpace other) {
         super(other);
         geometry2D = other.geometry2D.clone();
         externalReference = other.externalReference;
 
         ceilingHeight = other.ceilingHeight;
     }
+   */
 
     public static int getLabelNumber() {
         return labelNumber;
@@ -57,7 +57,7 @@ public class CellSpace extends AbstractFeature implements Serializable {
         geometry3D = geometry3d;
     }
 
-    public Polygon getGeometry2D() {
+    public PolygonGml getGeometry2D() {
         return geometry2D;
     }
 

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class CellSpaceMember {
 
-    private ArrayList<CellSpace> cellSpaces;
+    private List<CellSpace> cellSpaces;
 
-    public ArrayList<CellSpace> getCellSpaces() {
+    public List<CellSpace> getCellSpaces() {
         return cellSpaces;
     }
 

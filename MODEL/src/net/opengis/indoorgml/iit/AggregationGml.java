@@ -1,11 +1,21 @@
 package net.opengis.indoorgml.iit;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlType;
+
 public enum AggregationGml {
-    SET,
+
+    /*SET,
+
     BAG,
+
     SEQUENCE,
+
     ARRAY,
+
     RECORD,
+
     TABLE;
 
     private final String value;
@@ -18,12 +28,13 @@ public enum AggregationGml {
         return value;
     }
 
-    public static net.opengis.gml.v_3_2_1.AggregationType fromValue(String v) {
-        for (net.opengis.gml.v_3_2_1.AggregationType c: net.opengis.gml.v_3_2_1.AggregationType.values()) {
+    public static AggregationGml fromValue(String v) {
+        for (AggregationGml c: AggregationGml.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+*/
 }

@@ -32,4 +32,8 @@ public class PolygonGml {
     public void setExterior(LinearRingGml exterior) {
         this.exterior = exterior;
     }
+
+    public LinearRingGml getExteriorRing() {
+        return exterior;
+    }
 }

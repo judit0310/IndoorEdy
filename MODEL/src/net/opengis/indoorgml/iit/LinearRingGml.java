@@ -1,10 +1,13 @@
 package net.opengis.indoorgml.iit;
 
+import net.opengis.indoorgml.geometry.LineString;
+
 import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class LinearRingGml {
+public class LinearRingGml extends LineString {
 
     //Contains coordinates list of a cellspace
 
@@ -20,8 +23,6 @@ public class LinearRingGml {
 
     public LinearRingGml() {
     }
-
-
 
     public List<?> getPosOrPointPropertyOrPointRep() {
         return posOrPointPropertyOrPointRep;
