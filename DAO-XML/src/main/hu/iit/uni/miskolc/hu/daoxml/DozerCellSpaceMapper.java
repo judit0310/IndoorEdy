@@ -19,7 +19,7 @@ public class DozerCellSpaceMapper {
         DozerCellSpaceMapper.mapper = new DozerBeanMapper(Arrays.asList(new String[]{file}));
     }
     /*
-     *  @param  instance of {@link CellSpace}
+     *  @param  instance of {@link CellSpaceIgml}
      *  @return Instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
      */
     public CellSpaceType copyCellSpaceTypeFromCellSpace(CellSpace cellSpace) {
@@ -29,7 +29,7 @@ public class DozerCellSpaceMapper {
 
     /*
      *  @param  instance of {@link net.opengis.indoorgml.core.v_1_0.CellSpaceType}
-     *  @return instance of {@link CellSpace}
+     *  @return instance of {@link CellSpaceIgml}
      */
     public CellSpace copyCellSpaceFromCellSpaceType(CellSpaceType cellSpaceType){
         CellSpace cellSpace=mapper.map(cellSpaceType,CellSpace.class);

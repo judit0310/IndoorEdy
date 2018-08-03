@@ -1,17 +1,16 @@
 package net.opengis.indoorgml.iit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CellSpaceMember {
 
-    private List<CellSpace> cellSpaces;
+    private List<CellSpaceIgml> cellSpaceIgmls;
 
-    public List<CellSpace> getCellSpaces() {
-        return cellSpaces;
+    public List<CellSpaceIgml> getCellSpaceIgmls() {
+        return cellSpaceIgmls;
     }
 
-    public void setCellSpaces(List<CellSpace> cellSpaces) {
-        this.cellSpaces = cellSpaces;
+    public void setCellSpaceIgmls(List<CellSpaceIgml> cellSpaceIgmls) {
+        this.cellSpaceIgmls = cellSpaceIgmls;
     }
 }

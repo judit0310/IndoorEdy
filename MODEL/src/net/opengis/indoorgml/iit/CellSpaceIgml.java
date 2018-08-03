@@ -9,12 +9,12 @@ import net.opengis.indoorgml.geometry.Solid;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CellSpace extends AbstractFeature implements Serializable {
+public class CellSpaceIgml extends AbstractFeature implements Serializable {
 
     private static final long serialVersionUID = -4034197961145401035L;
     private static int labelNumber = 1;
 
-    private Solid geometry3D;
+    private SolidGml geometry3D;
     private PolygonGml geometry2D; // ---->
     private State duality;
     private String externalReference;
@@ -26,13 +26,13 @@ public class CellSpace extends AbstractFeature implements Serializable {
     private double ceilingHeight;
 
 
-    public CellSpace() {
+    public CellSpaceIgml() {
         super.setGmlID( "C" + (labelNumber++) );
 
         setDescription("Usage", "Room");
     }
 
-   /* public CellSpace(CellSpace other) {
+   /* public CellSpaceIgml(CellSpaceIgml other) {
         super(other);
         geometry2D = other.geometry2D.clone();
         externalReference = other.externalReference;
@@ -46,14 +46,14 @@ public class CellSpace extends AbstractFeature implements Serializable {
     }
 
     public static void setLabelNumber(int labelNumber) {
-        net.opengis.indoorgml.iit.CellSpace.labelNumber = labelNumber;
+        CellSpaceIgml.labelNumber = labelNumber;
     }
 
-    public Solid getGeometry3D() {
+    public SolidGml getGeometry3D() {
         return geometry3D;
     }
 
-    public void setGeometry3D(Solid geometry3d) {
+    public void setGeometry3D(SolidGml geometry3d) {
         geometry3D = geometry3d;
     }
 

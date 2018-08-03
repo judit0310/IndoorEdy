@@ -16,7 +16,7 @@ public class TestDozerIndoorFeaturesMapper {
     @Test
     public void unmarshallGetIndoorFeatures() throws JAXBException {
 
-        //Make unmarshalling to get a CellSpace to marshall
+        //Make unmarshalling to get a CellSpaceIgml to marshall
         File file = new File("resources/FJK-Haus_IndoorGML_withEXR-corrected(working).gml");
 
         JAXBContext jaxbContext = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0:net.opengis.indoorgml.navigation.v_1_0");
