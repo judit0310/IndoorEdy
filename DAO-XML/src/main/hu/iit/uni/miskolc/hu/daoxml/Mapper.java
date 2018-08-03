@@ -1,6 +1,8 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.*;
+import net.opengis.indoorgml.geometry.Polygon;
+import net.opengis.indoorgml.geometry.Shell;
 import net.opengis.indoorgml.iit.*;
 
 import javax.xml.bind.JAXBElement;
@@ -70,36 +72,42 @@ public class Mapper {
 
     public CellSpaceIgml createCellSpace3D(CellSpaceType cellSpaceType) {
         SolidType solidType = (SolidType) cellSpaceType.getCellSpaceGeometry().getGeometry3D().getAbstractSolid().getValue();
-        ShellType shellType = (ShellType) solidType.getExterior().getShell();
+        ShellType shellType = solidType.getExterior().getShell();
         List<SurfacePropertyType> surfacePropertyTypeList = shellType.getSurfaceMember();
 
         ArrayList<SurfaceType> surfaceTypeArrayList = new ArrayList<>();
-        PolygonGml polygonGml = new PolygonGml();
+        ArrayList<PolygonGml> polygonGml = new ArrayList<>();
+
+        ArrayList<LinearRingType> linearRingTypeArrayList = new ArrayList<>();
+        ArrayList<PolygonType> polygonTypeArrayList = new ArrayList<>();
 
         for (int i = 0; i < surfacePropertyTypeList.size(); i++) {
-            surfaceTypeArrayList.set(i, (SurfaceType) surfacePropertyTypeList.get(i).getAbstractSurface().getValue());
-
-            List<JAXBElement<? extends AbstractSurfacePatchType>> listAbstractSurfacePatchType = surfaceTypeArrayList.get(i).getPatches().getValue().getAbstractSurfacePatch();
-            for (int j = 0; j < listAbstractSurfacePatchType.size(); j++) {
-                LinearRingType linearRingType = (LinearRingType) (((PolygonPatchType) listAbstractSurfacePatchType.get(j).getValue()).getExterior().getAbstractRing().getValue());
-
-                List<DirectPosition> directPositionList = new ArrayList<DirectPosition>();
-                for (int z = 0; z < linearRingType.getPosOrPointPropertyOrPointRep().size(); z++) {
-                    DirectPosition directPosition = (DirectPosition) linearRingType.getPosOrPointPropertyOrPointRep().get(i).getValue();
-                    directPositionList.add(directPosition);
-                }
-                LinearRingGml linearRingGml = new LinearRingGml();
-                linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
-                polygonGml.setExterior(linearRingGml);
-            }
+            polygonTypeArrayList.add((PolygonType) surfacePropertyTypeList.get(i).getAbstractSurface().getValue());
+            linearRingTypeArrayList.add((LinearRingType) polygonTypeArrayList.get(i).getExterior().getAbstractRing().getValue());
         }
 
-        SolidGml solidGml=new SolidGml();
-        CellSpaceIgml target=new CellSpaceIgml();
+        ArrayList<DirectPositionType> directPositionTypeArrayList=new ArrayList<>();
+
+        for (int j = 0; j < linearRingTypeArrayList.size(); j++) {
+            List<DirectPosition> directPositionList = new ArrayList<DirectPosition>();
+
+            for (int k = 0; k < linearRingTypeArrayList.get(k).getPosOrPointPropertyOrPointRep().size(); k++) {
+                directPositionList.add((DirectPosition) linearRingTypeArrayList.get(j).getPosOrPointPropertyOrPointRep().get(k).getValue());
+            }
+            LinearRingGml linearRingGml = new LinearRingGml();
+            linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
+            polygonGml.get(j).setExterior(linearRingGml);
+        }
+
+        SolidGml solidGml = new SolidGml();
+        Shell shell=new Shell();
+        shell.setSurfaceMember(polygonGml);
+        solidGml.setExteriorShell(shell);
+        CellSpaceIgml target = new CellSpaceIgml();
         target.setGeometry3D(solidGml);
         return target;
+        }
     }
-}
 
 
 //    public CellSpaceIgml createCellSpace3D(CellSpaceType cellSpaceType) {
@@ -121,3 +129,40 @@ public class Mapper {
 //        target.setGeometry2D(polygonGml);
 //        return target;
 //    }
+
+
+
+
+//    public CellSpaceIgml createCellSpace3D(CellSpaceType cellSpaceType) {
+//        SolidType solidType = (SolidType) cellSpaceType.getCellSpaceGeometry().getGeometry3D().getAbstractSolid().getValue();
+//        ShellType shellType = (ShellType) solidType.getExterior().getShell();
+//        List<SurfacePropertyType> surfacePropertyTypeList = shellType.getSurfaceMember();
+//
+//        ArrayList<SurfaceType> surfaceTypeArrayList = new ArrayList<>();
+//        PolygonGml polygonGml = new PolygonGml();
+//
+//        for (int i = 0; i < surfacePropertyTypeList.size(); i++) {
+//            surfaceTypeArrayList.set(i, (SurfaceType) surfacePropertyTypeList.get(i).getAbstractSurface().getValue());
+//
+//
+//            List<JAXBElement<? extends AbstractSurfacePatchType>> listAbstractSurfacePatchType = surfaceTypeArrayList.get(i).getPatches().getValue().getAbstractSurfacePatch();
+//            for (int j = 0; j < listAbstractSurfacePatchType.size(); j++) {
+//                LinearRingType linearRingType = (LinearRingType) (((PolygonPatchType) listAbstractSurfacePatchType.get(j).getValue()).getExterior().getAbstractRing().getValue());
+//
+//                List<DirectPosition> directPositionList = new ArrayList<DirectPosition>();
+//                for (int z = 0; z < linearRingType.getPosOrPointPropertyOrPointRep().size(); z++) {
+//                    DirectPosition directPosition = (DirectPosition) linearRingType.getPosOrPointPropertyOrPointRep().get(i).getValue();
+//                    directPositionList.add(directPosition);
+//                }
+//                LinearRingGml linearRingGml = new LinearRingGml();
+//                linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
+//                polygonGml.setExterior(linearRingGml);
+//            }
+//        }
+//
+//        SolidGml solidGml=new SolidGml();
+//        CellSpaceIgml target=new CellSpaceIgml();
+//        target.setGeometry3D(solidGml);
+//        return target;
+//    }
+//}
