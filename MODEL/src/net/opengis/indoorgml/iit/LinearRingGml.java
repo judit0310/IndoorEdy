@@ -24,7 +24,7 @@ public class LinearRingGml extends LineString {
     public LinearRingGml() {
     }
 
-    public List<?> getPosOrPointPropertyOrPointRep() {
+    public List<DirectPosition> getPosOrPointPropertyOrPointRep() {
         return posOrPointPropertyOrPointRep;
     }
 
