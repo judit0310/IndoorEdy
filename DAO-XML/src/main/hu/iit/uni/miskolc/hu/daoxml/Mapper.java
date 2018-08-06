@@ -39,12 +39,19 @@ public class Mapper {
 
             cellSpaceIgmlList.add(cellSpaceIgml);
         }
-        ArrayList<CellSpaceMember> cellSpaceMemberList = null;
+        ArrayList<CellSpaceMember> cellSpaceMemberList = new ArrayList<>();
 
         for (int i = 0; i < cellSpaceIgmlList.size(); i++) {
-            cellSpaceMemberList.get(i).setCellSpaceIgmls(cellSpaceIgmlList);
+            CellSpaceMember cellSpaceMember=new CellSpaceMember();
+            cellSpaceMember.setCellSpaceIgmls(cellSpaceIgmlList);
+            cellSpaceMemberList.add(cellSpaceMember);
+
+
+           // cellSpaceMemberList.get(i).setCellSpaceIgmls(cellSpaceIgmlList);
         }
         target.setCellSpaceMemberList(cellSpaceMemberList);
+
+
 
         ArrayList<CellSpaceBoundaryMemberType> cellSpaceBoundaryMemberTypeList = (ArrayList<CellSpaceBoundaryMemberType>) primalSpaceFeaturesType.getCellSpaceBoundaryMember();
         List<CellSpaceBoundary> cellSpaceBoundaryList = new ArrayList<CellSpaceBoundary>();
@@ -55,13 +62,16 @@ public class Mapper {
             cellSpaceBoundaryList.add(cellSpaceBoundary);
         }
 
-        ArrayList<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList = null;
+        CellSpaceBoundaryMember cellSpaceBoundaryMember=new CellSpaceBoundaryMember();
+        List<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList = new ArrayList<>();
 
-        for (int i = 0; i < cellSpaceIgmlList.size(); i++) {
-            cellSpaceBoundaryMemberList.get(i).setCellSpaceBoundaryMember(cellSpaceBoundaryList);
+
+        for(int i=0;i<cellSpaceBoundaryMemberList.size();i++){
+            cellSpaceBoundaryMember.setCellSpaceBoundaryMember(cellSpaceBoundaryList);
+            cellSpaceBoundaryMemberList.add(cellSpaceBoundaryMember);
         }
 
-        target.setCellSpaceBoundaryMemberList(cellSpaceBoundaryMemberList);
+        target.setCellSpaceBoundaryMemberList(cellSpaceBoundaryMemberList); //Adding List<CellSpaceBoundaryMember> to PrimarySF.
         return target;
     }
 
@@ -86,17 +96,21 @@ public class Mapper {
             linearRingTypeArrayList.add((LinearRingType) polygonTypeArrayList.get(i).getExterior().getAbstractRing().getValue());
         }
 
-        ArrayList<DirectPositionType> directPositionTypeArrayList=new ArrayList<>();
+
+        List<DirectPosition> directPositionList = new ArrayList<DirectPosition>();
 
         for (int j = 0; j < linearRingTypeArrayList.size(); j++) {
-            List<DirectPosition> directPositionList = new ArrayList<DirectPosition>();
+            for (int k = 0; k < linearRingTypeArrayList.get(j).getPosOrPointPropertyOrPointRep().size(); k++) {
+                //directPositionList.add((DirectPosition) linearRingTypeArrayList.get(j).getPosOrPointPropertyOrPointRep().get(k).getValue());
 
-            for (int k = 0; k < linearRingTypeArrayList.get(k).getPosOrPointPropertyOrPointRep().size(); k++) {
-                directPositionList.add((DirectPosition) linearRingTypeArrayList.get(j).getPosOrPointPropertyOrPointRep().get(k).getValue());
+                DirectPositionType directPositionType = (DirectPositionType) linearRingTypeArrayList.get(j).getPosOrPointPropertyOrPointRep().get(k).getValue();
+                directPositionList.add(new DirectPosition((ArrayList)directPositionType.getValue()));
             }
+
             LinearRingGml linearRingGml = new LinearRingGml();
             linearRingGml.setPosOrPointPropertyOrPointRep(directPositionList);
-            polygonGml.get(j).setExterior(linearRingGml);
+
+            polygonGml.add(new PolygonGml(linearRingGml,null));
         }
 
         SolidGml solidGml = new SolidGml();
@@ -129,8 +143,6 @@ public class Mapper {
 //        target.setGeometry2D(polygonGml);
 //        return target;
 //    }
-
-
 
 
 //    public CellSpaceIgml createCellSpace3D(CellSpaceType cellSpaceType) {

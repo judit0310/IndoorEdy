@@ -41,6 +41,8 @@ public class CellSpaceIgml extends AbstractFeature implements Serializable {
     }
    */
 
+
+
     public static int getLabelNumber() {
         return labelNumber;
     }
