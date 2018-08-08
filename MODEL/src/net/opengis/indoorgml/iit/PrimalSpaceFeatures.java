@@ -4,14 +4,14 @@ import java.util.List;
 
 public class PrimalSpaceFeatures {
     private List<CellSpaceMember> cellSpaceMemberList;
-    private List<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList;
+    private List<CellSpaceBoundary> cellSpaceBoundaryList;
 
     public PrimalSpaceFeatures(){
     }
 
-    public PrimalSpaceFeatures(List<CellSpaceMember> cellSpaceMemberList, List<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList) {
+    public PrimalSpaceFeatures(List<CellSpaceMember> cellSpaceMemberList, List<CellSpaceBoundary> cellSpaceBoundaryList) {
         this.cellSpaceMemberList = cellSpaceMemberList;
-        this.cellSpaceBoundaryMemberList = cellSpaceBoundaryMemberList;
+        this.cellSpaceBoundaryList = cellSpaceBoundaryList;
 
     }
 
@@ -23,11 +23,11 @@ public class PrimalSpaceFeatures {
         this.cellSpaceMemberList = cellSpaceMemberList;
     }
 
-    public List<CellSpaceBoundaryMember> getCellSpaceBoundaryMemberList() {
-        return cellSpaceBoundaryMemberList;
+    public List<CellSpaceBoundary> getCellSpaceBoundaryList() {
+        return cellSpaceBoundaryList;
     }
 
-    public void setCellSpaceBoundaryMemberList(List<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList) {
-        this.cellSpaceBoundaryMemberList = cellSpaceBoundaryMemberList;
+    public void setCellSpaceBoundaryList(List<CellSpaceBoundary> cellSpaceBoundaryList) {
+        this.cellSpaceBoundaryList = cellSpaceBoundaryList;
     }
 }

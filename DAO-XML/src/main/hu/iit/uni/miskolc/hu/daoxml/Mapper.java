@@ -1,7 +1,7 @@
 package hu.iit.uni.miskolc.hu.daoxml;
+
 import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.*;
-import net.opengis.indoorgml.geometry.Polygon;
 import net.opengis.indoorgml.geometry.Shell;
 import net.opengis.indoorgml.iit.*;
 
@@ -55,27 +55,24 @@ public class Mapper {
 
         ArrayList<CellSpaceBoundaryMemberType> cellSpaceBoundaryMemberTypeList = (ArrayList<CellSpaceBoundaryMemberType>) primalSpaceFeaturesType.getCellSpaceBoundaryMember();
         List<CellSpaceBoundary> cellSpaceBoundaryList = new ArrayList<CellSpaceBoundary>();
+        System.out.println("abrakadabra");
         for (CellSpaceBoundaryMemberType c : cellSpaceBoundaryMemberTypeList) {
             JAXBElement<CellSpaceBoundaryType> jCellSpaceBoundaryType = (JAXBElement<CellSpaceBoundaryType>) c.getCellSpaceBoundary();
             CellSpaceBoundaryType cellSpaceBoundaryType = jCellSpaceBoundaryType.getValue();
-            CellSpaceBoundary cellSpaceBoundary = createCellSpaceBoundary(null, cellSpaceBoundaryType);
+            CellSpaceBoundary cellSpaceBoundary = createCellSpaceBoundary(cellSpaceBoundaryType);
+            System.out.println("abrakadabra");
             cellSpaceBoundaryList.add(cellSpaceBoundary);
         }
 
-        CellSpaceBoundaryMember cellSpaceBoundaryMember=new CellSpaceBoundaryMember();
-        List<CellSpaceBoundaryMember> cellSpaceBoundaryMemberList = new ArrayList<>();
-
-
-        for(int i=0;i<cellSpaceBoundaryMemberList.size();i++){
-            cellSpaceBoundaryMember.setCellSpaceBoundaryMember(cellSpaceBoundaryList);
-            cellSpaceBoundaryMemberList.add(cellSpaceBoundaryMember);
-        }
-
-        target.setCellSpaceBoundaryMemberList(cellSpaceBoundaryMemberList); //Adding List<CellSpaceBoundaryMember> to PrimarySF.
+        System.out.println("abrakadabra");
+        target.setCellSpaceBoundaryList(cellSpaceBoundaryList); //Adding List<CellSpaceBoundary> to PrimarySF.
         return target;
     }
 
-    private CellSpaceBoundary createCellSpaceBoundary(Object o, CellSpaceBoundaryType cellSpaceBoundaryType) {
+    private CellSpaceBoundary createCellSpaceBoundary(CellSpaceBoundaryType cellSpaceBoundaryMemberType) {
+        PolygonType polygonType = (PolygonType) cellSpaceBoundaryMemberType.getCellSpaceBoundaryGeometry().getGeometry3D().getAbstractSurface().getValue();
+        System.out.println("abrakadabra");
+        CellSpaceBoundary cellSpaceBoundary = new CellSpaceBoundary();
         return null;
     }
 
@@ -124,7 +121,7 @@ public class Mapper {
     }
 
 
-//    public CellSpaceIgml createCellSpace3D(CellSpaceType cellSpaceType) {
+//    public CellSpaceIgml createCellSpace2D(CellSpaceType cellSpaceType) {
 //        PolygonType polygonType = (PolygonType) cellSpaceType.getCellSpaceGeometry().getGeometry3D().getAbstractSolid().getValue();
 //        LinearRingType linearRingType= (LinearRingType) polygonType.getExterior().getAbstractRing().getValue();
 //
