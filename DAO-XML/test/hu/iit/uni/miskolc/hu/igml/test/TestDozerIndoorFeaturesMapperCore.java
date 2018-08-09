@@ -11,7 +11,7 @@ import org.junit.Test;
 import javax.xml.bind.*;
 import java.io.File;
 
-public class TestDozerIndoorFeaturesMapper {
+public class TestDozerIndoorFeaturesMapperCore {
 
     @Test
     public void unmarshallGetIndoorFeatures() throws JAXBException {

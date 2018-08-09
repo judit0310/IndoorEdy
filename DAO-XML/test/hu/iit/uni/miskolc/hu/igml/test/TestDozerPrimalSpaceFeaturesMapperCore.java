@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class TestDozerPrimalSpaceFeaturesMapper {
+public class TestDozerPrimalSpaceFeaturesMapperCore {
 
 
     @Test

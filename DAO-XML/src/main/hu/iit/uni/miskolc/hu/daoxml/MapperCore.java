@@ -9,7 +9,7 @@ import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapper {
+public class MapperCore {
 
     public IndoorFeatures indoorFeaturesMapper(IndoorFeatures target, IndoorFeaturesType indoorFeaturesType) {
         MultiLayeredGraph multiLayeredGraph = createMultiLayeredGraph(null, indoorFeaturesType.getMultiLayeredGraph());
@@ -69,6 +69,8 @@ public class Mapper {
         return target;
     }
 
+
+    // none of the gml files was using CellSpaceBoundary
     private CellSpaceBoundary createCellSpaceBoundary(CellSpaceBoundaryType cellSpaceBoundaryMemberType) {
         PolygonType polygonType = (PolygonType) cellSpaceBoundaryMemberType.getCellSpaceBoundaryGeometry().getGeometry3D().getAbstractSurface().getValue();
         System.out.println("abrakadabra");
@@ -168,7 +170,6 @@ public class Mapper {
 //                polygonGml.setExterior(linearRingGml);
 //            }
 //        }
-//
 //        SolidGml solidGml=new SolidGml();
 //        CellSpaceIgml target=new CellSpaceIgml();
 //        target.setGeometry3D(solidGml);
