@@ -50,7 +50,7 @@
 
     <mapping>
         <class-a>net.opengis.indoorgml.core.v_1_0.SpaceLayerType</class-a>
-        <class-b> net.opengis.indoorgml.core.SpaceLayer</class-b>
+        <class-b>net.opengis.indoorgml.iit.SpaceLayer</class-b>
     </mapping>
 
     <mapping>

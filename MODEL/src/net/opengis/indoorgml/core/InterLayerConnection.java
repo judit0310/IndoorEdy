@@ -1,5 +1,7 @@
 package net.opengis.indoorgml.core;
 
+import net.opengis.indoorgml.iit.SpaceLayer;
+
 import java.io.Serializable;
 
 
