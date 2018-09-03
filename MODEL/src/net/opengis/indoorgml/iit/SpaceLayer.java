@@ -1,8 +1,8 @@
 package net.opengis.indoorgml.iit;
 
 import net.opengis.indoorgml.core.AbstractFeature;
-import net.opengis.indoorgml.core.Edges;
-import net.opengis.indoorgml.core.Nodes;
+import net.opengis.indoorgml.iit.Edges;
+import net.opengis.indoorgml.iit.Nodes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class SpaceLayer extends AbstractFeature implements Serializable {
 	 */
 	private static final long serialVersionUID = -7497272085077190859L;
 	private static int labelNumber = 1;
-	private ArrayList<Nodes> nodes;
+	private List<Nodes> nodes;
 	private ArrayList<Edges> edges;
 
 	public SpaceLayer() {
@@ -26,7 +26,7 @@ public class SpaceLayer extends AbstractFeature implements Serializable {
 		super(other);
 	}
 
-	public ArrayList<Nodes> getNodes() {
+	public List<Nodes> getNodes() {
 		if (nodes == null) {
 			nodes = new ArrayList<Nodes>();
 			nodes.add(new Nodes());

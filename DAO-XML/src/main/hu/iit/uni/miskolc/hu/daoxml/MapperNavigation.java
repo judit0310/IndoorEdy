@@ -16,7 +16,11 @@ import java.util.List;
 public class MapperNavigation {
 
     public MultiLayeredGraph multiLayeredGraphMapper(MultiLayeredGraphPropertyType multiLayeredGraphPropertyType) {
+
+        MultiLayeredGraphType multiLayeredGraphType = multiLayeredGraphPropertyType.getMultiLayeredGraph();
+
         List<SpaceLayersType> spaceLayersTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getSpaceLayers();
+
         List<InterEdgesType> interEdgesTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getInterEdges();
 
         List<SpaceLayerMemberType> spaceLayerMemberType=new ArrayList<>();
@@ -51,6 +55,7 @@ public class MapperNavigation {
                    stateList.add(state);
                    }
                 }
+                stateOnFloor.add(new StateOnFloor());
                 stateOnFloor.get(0).setStateMember(stateList);
 
                 Nodes nodes=new Nodes();
@@ -67,7 +72,7 @@ public class MapperNavigation {
             ArrayList<SpaceLayer> spaceLayers1=new ArrayList<>();
 
             MultiLayeredGraph multiLayeredGraph = new MultiLayeredGraph();
-         //   multiLayeredGraph.setInterEdges();
+         // multiLayeredGraph.setInterEdges();
             multiLayeredGraph.setSpaceLayers(spaceLayers);
             return multiLayeredGraph;
         }

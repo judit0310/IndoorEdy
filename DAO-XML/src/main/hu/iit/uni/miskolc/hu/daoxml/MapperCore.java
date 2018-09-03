@@ -1,5 +1,6 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 
+import edu.pnu.project.BoundaryType;
 import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.v_1_0.*;
 import net.opengis.indoorgml.geometry.Shell;
@@ -72,10 +73,21 @@ public class MapperCore {
 
     // none of the gml files was using CellSpaceBoundary
     private CellSpaceBoundary createCellSpaceBoundary(CellSpaceBoundaryType cellSpaceBoundaryMemberType) {
-        PolygonType polygonType = (PolygonType) cellSpaceBoundaryMemberType.getCellSpaceBoundaryGeometry().getGeometry3D().getAbstractSurface().getValue();
-        System.out.println("abrakadabra");
+        AbstractSurfaceType abstractSurfaceType = (AbstractSurfaceType) cellSpaceBoundaryMemberType.getCellSpaceBoundaryGeometry().getGeometry3D().getAbstractSurface().getValue();
+
         CellSpaceBoundary cellSpaceBoundary = new CellSpaceBoundary();
-        return null;
+        if(abstractSurfaceType instanceof PolygonType){
+            PolygonType polygonType=(PolygonType) abstractSurfaceType;
+        }
+        else if (abstractSurfaceType instanceof OrientableSurfaceType){
+            OrientableSurfaceType orientableSurfaceType=(OrientableSurfaceType) abstractSurfaceType;
+        }
+
+        BoundaryType boundaryType=BoundaryType.CellSpaceBoundary;
+        cellSpaceBoundary.setBoundaryType(boundaryType);
+        PolygonGml polygonGml=new PolygonGml();
+        cellSpaceBoundary.setGeometry3D();
+        return cellSpaceBoundary;
     }
 
 
