@@ -86,7 +86,7 @@ public class MapperCore {
         BoundaryType boundaryType=BoundaryType.CellSpaceBoundary;
         cellSpaceBoundary.setBoundaryType(boundaryType);
         PolygonGml polygonGml=new PolygonGml();
-        cellSpaceBoundary.setGeometry3D();
+        cellSpaceBoundary.setGeometry3D(polygonGml);
         return cellSpaceBoundary;
     }
 

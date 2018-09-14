@@ -17,17 +17,13 @@ public class MapperNavigation {
 
     public MultiLayeredGraph multiLayeredGraphMapper(MultiLayeredGraphPropertyType multiLayeredGraphPropertyType) {
 
-        MultiLayeredGraphType multiLayeredGraphType = multiLayeredGraphPropertyType.getMultiLayeredGraph();
-
         List<SpaceLayersType> spaceLayersTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getSpaceLayers();
-
-        List<InterEdgesType> interEdgesTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getInterEdges();
 
         List<SpaceLayerMemberType> spaceLayerMemberType=new ArrayList<>();
         List<SpaceLayerType> spaceLayerTypeList = new ArrayList<>();
-
+        ArrayList<SpaceLayer> spaceLayerList = new ArrayList<>();
+        ArrayList<SpaceLayers> spaceLayerS = new ArrayList<>();
         List<Nodes> nodesList = new ArrayList<>();
-        List<EdgesType> edgeTypes = new ArrayList<>();
         ArrayList <StateOnFloor> stateOnFloor=new ArrayList<>();
         StateOnFloor stateFloor=new StateOnFloor();
         ArrayList<State> stateList=new ArrayList<>();
@@ -55,25 +51,28 @@ public class MapperNavigation {
                    stateList.add(state);
                    }
                 }
-                stateOnFloor.add(new StateOnFloor());
-                stateOnFloor.get(0).setStateMember(stateList);
+
+                stateFloor.setStateMember(stateList);
+                stateOnFloor.add(stateFloor);
 
                 Nodes nodes=new Nodes();
                 nodes.setStateOnFloors(stateOnFloor);
+                nodesList.add(nodes);
 
                 SpaceLayer spaceLayer=new SpaceLayer();
                 spaceLayer.setNodes(nodesList);
-                //spaceLayer.setEdges(edgeTypes);
 
+                spaceLayerList.add(spaceLayer);
+
+                SpaceLayers spaceLayers1=new SpaceLayers();
+                spaceLayers1.setSpaceLayerMember(spaceLayerList);
+
+                spaceLayerS.add(spaceLayers1);
             }
 
-
-            ArrayList<SpaceLayers> spaceLayers = new ArrayList<>();
-            ArrayList<SpaceLayer> spaceLayers1=new ArrayList<>();
-
             MultiLayeredGraph multiLayeredGraph = new MultiLayeredGraph();
-         // multiLayeredGraph.setInterEdges();
-            multiLayeredGraph.setSpaceLayers(spaceLayers);
+           // multiLayeredGraph.setInterEdges(spaceLayerS);
+            multiLayeredGraph.setSpaceLayers(spaceLayerS);
             return multiLayeredGraph;
         }
     }

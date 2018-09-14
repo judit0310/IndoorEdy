@@ -17,7 +17,7 @@ public class TestNavigationPart {
     public void unmarshallGetCellSpace() throws JAXBException {
 
         //Make unmarshalling to get a CellSpaceIgml to marshall
-        File file = new File("resources/SAMPLE_DATA_LWM_3D_1.0.3.gml");
+        File file = new File("resources/asdf.gml");
 
         JAXBContext jaxbContext = JAXBContext.newInstance("net.opengis.indoorgml.core.v_1_0:net.opengis.indoorgml.navigation.v_1_0");
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

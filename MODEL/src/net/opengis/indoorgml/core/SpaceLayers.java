@@ -40,5 +40,4 @@ public class SpaceLayers extends AbstractFeature implements Serializable {
 	public static void setLabelNumber(int labelNumber) {
 		SpaceLayers.labelNumber = labelNumber;
 	}
-
 }
