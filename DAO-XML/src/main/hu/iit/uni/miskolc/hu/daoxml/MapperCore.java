@@ -12,7 +12,9 @@ import java.util.List;
 
 public class MapperCore {
 
-    public IndoorFeatures indoorFeaturesMapper(IndoorFeatures target, IndoorFeaturesType indoorFeaturesType) {
+    public MapperCore(){}
+
+    public IndoorFeatures indoorFeaturesCreator(IndoorFeatures target, IndoorFeaturesType indoorFeaturesType) {
         MultiLayeredGraph multiLayeredGraph = createMultiLayeredGraph(null, indoorFeaturesType.getMultiLayeredGraph());
         target.setMultiLayeredGraph(multiLayeredGraph);
 

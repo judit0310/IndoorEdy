@@ -5427,10 +5427,6 @@
       </cellSpaceMember>
     </PrimalSpaceFeatures>
   </primalSpaceFeatures>
-
-
-
-
   <multiLayeredGraph>
     <MultiLayeredGraph gml:id="MG1">
     <spaceLayers gml:id="SL1">
@@ -5651,8 +5647,6 @@
               </State>
             </stateMember>
           </nodes>
-
-
           <edges gml:id="E1">
             <transitionMember>
               <Transition gml:id="T0">

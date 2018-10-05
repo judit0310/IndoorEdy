@@ -35,7 +35,6 @@ public class TestNavigationPart {
         System.out.println(multiLayeredGraph.getSpaceLayers().size());
 
 
-
         // System.out.println(primalSpaceFeatures.getCellSpaceMemberList().get(0).getCellSpaceIgmls().get(0).getGeometry3D().getExteriorShell().getSurfaceMember().get(0).getExteriorRing().getPoints().get(0).getPanelX());
 //        try {
 //            File fileForMarshalling = new File("C:\\Users\\Foxx\\Desktop\\generatedFile.xml");
