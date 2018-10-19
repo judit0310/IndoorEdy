@@ -1,11 +1,11 @@
 package hu.iit.uni.miskolc.hu.daoxml;
 
-import net.opengis.gml.v_3_2_1.DirectPositionType;
-import net.opengis.gml.v_3_2_1.PointPropertyType;
-import net.opengis.gml.v_3_2_1.PointType;
+import net.opengis.gml.v_3_2_1.*;
 import net.opengis.indoorgml.core.*;
 import net.opengis.indoorgml.core.v_1_0.*;
+import net.opengis.indoorgml.geometry.LineString;
 import net.opengis.indoorgml.geometry.Point;
+import net.opengis.indoorgml.iit.DirectPosition;
 import net.opengis.indoorgml.iit.Edges;
 import net.opengis.indoorgml.iit.MultiLayeredGraph;
 import net.opengis.indoorgml.iit.Nodes;
@@ -18,6 +18,7 @@ public class MapperNavigation {
 
     private List<SpaceLayerType> spaceLayerTypeList;
     private ArrayList<State> stateArrayList;
+    private ArrayList<Transition> transitionArrayList;
 
     public MultiLayeredGraph multiLayeredGraphMapper(MultiLayeredGraphPropertyType multiLayeredGraphPropertyType) {
 
@@ -26,6 +27,9 @@ public class MapperNavigation {
         List<SpaceLayerMemberType> spaceLayerMemberType = new ArrayList<>();
         spaceLayerTypeList = new ArrayList<>();
         stateArrayList=new ArrayList<>();
+        transitionArrayList=new ArrayList<>();
+
+
         ArrayList<SpaceLayer> spaceLayerList = new ArrayList<>();
         ArrayList<SpaceLayers> spaceLayerS = new ArrayList<>();
         List<Nodes> nodesList = new ArrayList<>();
@@ -48,30 +52,33 @@ public class MapperNavigation {
             for (int m = 0; m < spaceLayerTypeList.get(n).getNodes().size(); m++) {
                 for (int p = 0; p < spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().size(); p++) {
 
-
                     // AbstractCurveType abstractCurveType = spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(p).getTransition().getGeometry().getAbstractCurve().getValue();
                     DirectPositionType directPositionType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getGeometry().getPoint().getPos();
 
-
                     List<TransitionPropertyType> transitionPropertyTypeList = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getConnects();
-
                     StateType stateType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState();
-
-                    stateArrayList.add(stateCreator(spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState()));
+                    stateArrayList.add(stateCreator(stateType));
 
                     for(int s=0;s<transitionPropertyTypeList.size();s++){
                         Transition transition=new Transition();
 
-                        System.out.println(transitionPropertyTypeList.size());
 
-                        List<StatePropertyType> statePropertyTypes = transitionPropertyTypeList.get(s).getTransition().getConnects();
 
-                        State[] states=new State[2];
+                        getTransitionByHref(transitionPropertyTypeList.get(s).getHref());
 
-                        states[0]= stateCreator(statePropertyTypes.get(0).getState());
-                        states[1]= stateCreator(statePropertyTypes.get(1).getState());
 
-                        transition.setStates(states);
+
+
+
+                        //Gives null, there are just two transitions in there, but nothing in them.
+                        //TransitionType transitionType = transitionPropertyTypeList.get(s).getTransition();
+
+                        State[] statesConnect=new State[2];
+
+                       //statesConnect[0]= stateCreator(statePropertyTypes.get(0).getState());
+                      // statesConnect[1]= stateCreator(statePropertyTypes.get(1).getState());
+
+                        transition.setStates(statesConnect);
                         transition.setWeight(1.0);
                         transition.setPath(transitionList.get(s).getPath());
                         transition.setDuality(transitionList.get(s).getDuality());
@@ -87,7 +94,6 @@ public class MapperNavigation {
 
                     point.setZ(directPositionType.getValue().get(2));
 
-
                     State state = new State();
                     state.setPosition(point);
                     state.setTransitions(transitionList);
@@ -96,7 +102,7 @@ public class MapperNavigation {
             }
 
 
-
+//////////////////Edges- have to search States
 
             for (int m = 0; m < spaceLayerTypeList.get(n).getEdges().size(); m++) {
                 for (int q = 0; q < spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().size(); q++) {
@@ -189,6 +195,26 @@ public class MapperNavigation {
         return point;
     }
 
+    public Transition transitionCreator(TransitionType transitionType){
+        Transition transition = new Transition();
+
+        State[] statesOfTransition = new State[2];
+        statesOfTransition[0]=stateCreator(transitionType.getConnects().get(0).getState());
+        statesOfTransition[1]=stateCreator(transitionType.getConnects().get(1).getState());
+
+        AbstractCurveType abstractCurveType = (AbstractCurveType)transitionType.getGeometry().getAbstractCurve().getValue();
+        LineStringType lineStringType = (LineStringType) abstractCurveType;
+        LineString path=new LineString();
+
+
+        transition.setStates(statesOfTransition);
+        transition.setGmlID(transitionType.getId());
+        transition.setWeight(transitionType.getWeight());
+
+        return transition;
+    }
+
+
     public ArrayList<SpaceLayers> SpaceLayerCreator(SpaceLayersType spaceLayersType) {
         List <SpaceLayerMemberType> spaceLayerMemberTypeList = spaceLayersType.getSpaceLayerMember();
         for(int i=0; i<spaceLayerMemberTypeList.size(); i++){
@@ -203,10 +229,28 @@ public class MapperNavigation {
         State state=new State();
         for(int i=0;i<stateArrayList.size();i++){
             if(stateArrayList.get(i).getGmlID().contentEquals(Href)){
-                state=stateArrayList.get(i);
-                break;
+                return stateArrayList.get(i);
             }
         }
-    return state;
+        return null;
+    }
+
+    public Transition getTransitionByHref(String Href){
+        Transition transition=new Transition();
+
+        return transition;
+    }
+
+    public LineString LineStringCreator(LineStringType lineStringType){
+        LineString lineString=new LineString();
+        for(int i=0; i< lineStringType.getPosOrPointPropertyOrPointRep().size();i++){
+            DirectPositionType directPositionType = (DirectPositionType) lineStringType.getPosOrPointPropertyOrPointRep().get(i).getValue();
+        }
+        return lineString;
+    }
+
+    public DirectPosition directPositionCreator(DirectPositionType directPositionType){
+        DirectPosition directPosition=new DirectPosition((ArrayList<Double>) directPositionType.getValue());
+        return directPosition;
     }
 }

@@ -10,6 +10,7 @@ public class DirectPosition {
     private ArrayList<Double> coordinatesOfPoint;  ///------> END
 
     public DirectPosition(ArrayList<Double> coordinatesOfPoint) {
+
         this.coordinatesOfPoint = coordinatesOfPoint;
     }
 
