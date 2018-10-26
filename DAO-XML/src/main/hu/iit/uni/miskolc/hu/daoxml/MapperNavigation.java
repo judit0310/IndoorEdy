@@ -19,25 +19,27 @@ public class MapperNavigation {
     private List<SpaceLayerType> spaceLayerTypeList;
     private ArrayList<State> stateArrayList;
     private ArrayList<Transition> transitionArrayList;
+    private ArrayList<Transition> transitionList;
+    private ArrayList<State> stateList;
+    private ArrayList<StateType> stateTypeArrayList;
 
     public MultiLayeredGraph multiLayeredGraphMapper(MultiLayeredGraphPropertyType multiLayeredGraphPropertyType) {
 
-        List<SpaceLayersType> spaceLayersTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getSpaceLayers();
-
-        List<SpaceLayerMemberType> spaceLayerMemberType = new ArrayList<>();
         spaceLayerTypeList = new ArrayList<>();
         stateArrayList=new ArrayList<>();
+        stateList = new ArrayList<>();
         transitionArrayList=new ArrayList<>();
+        transitionList = new ArrayList<>();
+        stateTypeArrayList = new ArrayList<>();
 
-
+        List<SpaceLayersType> spaceLayersTypeList = multiLayeredGraphPropertyType.getMultiLayeredGraph().getSpaceLayers();
+        List<SpaceLayerMemberType> spaceLayerMemberType = new ArrayList<>();
         ArrayList<SpaceLayer> spaceLayerList = new ArrayList<>();
         ArrayList<SpaceLayers> spaceLayerS = new ArrayList<>();
         List<Nodes> nodesList = new ArrayList<>();
         ArrayList<StateOnFloor> stateOnFloor = new ArrayList<>();
         StateOnFloor stateFloor = new StateOnFloor();
-        ArrayList<State> stateList = new ArrayList<>();
         ArrayList<Edges> edgesList = new ArrayList<>();
-        ArrayList<Transition> transitionList = new ArrayList<>();
 
         for (int i = 0; i < spaceLayersTypeList.size(); i++) {
             spaceLayerMemberType = spaceLayersTypeList.get(i).getSpaceLayerMember(); // It gives back  a list.
@@ -47,116 +49,31 @@ public class MapperNavigation {
             spaceLayerTypeList.add(spaceLayerMemberType.get(j).getSpaceLayer());
         }
 
-        for (int n = 0; n < spaceLayerTypeList.size(); n++) {
+        readUpStateList();
+        readUpTransitionList();
 
-            for (int m = 0; m < spaceLayerTypeList.get(n).getNodes().size(); m++) {
-                for (int p = 0; p < spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().size(); p++) {
+        stateFloor.setStateMember(stateList);
+        stateOnFloor.add(stateFloor);
 
-                    // AbstractCurveType abstractCurveType = spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(p).getTransition().getGeometry().getAbstractCurve().getValue();
-                    DirectPositionType directPositionType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getGeometry().getPoint().getPos();
+        Nodes nodes = new Nodes();
+        nodes.setStateOnFloors(stateOnFloor);
+        nodesList.add(nodes);
 
-                    List<TransitionPropertyType> transitionPropertyTypeList = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getConnects();
-                    StateType stateType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState();
-                    stateArrayList.add(stateCreator(stateType));
+        TransitionOnFloor transitionOnFloor=new TransitionOnFloor();
+        transitionOnFloor.setTransitionMember(transitionList);
+        ArrayList<TransitionOnFloor> transitionOnFloorArray = new ArrayList<>();
 
-                    for(int s=0;s<transitionPropertyTypeList.size();s++){
-                        Transition transition=new Transition();
+        transitionOnFloorArray.add(transitionOnFloor);
 
+        Edges edges = new Edges();
+        edges.setTransitionOnFloors(transitionOnFloorArray);
+        edgesList.add(edges);
 
+        SpaceLayer spaceLayer = new SpaceLayer();
+        spaceLayer.setNodes(nodesList);
+        spaceLayer.setEdges(edgesList);
 
-                        getTransitionByHref(transitionPropertyTypeList.get(s).getHref());
-
-
-
-
-
-                        //Gives null, there are just two transitions in there, but nothing in them.
-                        //TransitionType transitionType = transitionPropertyTypeList.get(s).getTransition();
-
-                        State[] statesConnect=new State[2];
-
-                       //statesConnect[0]= stateCreator(statePropertyTypes.get(0).getState());
-                      // statesConnect[1]= stateCreator(statePropertyTypes.get(1).getState());
-
-                        transition.setStates(statesConnect);
-                        transition.setWeight(1.0);
-                        transition.setPath(transitionList.get(s).getPath());
-                        transition.setDuality(transitionList.get(s).getDuality());
-                    }
-
-
-                    Point point = new Point();
-                    point.setRealX(directPositionType.getValue().get(0));
-                    point.setRealY(directPositionType.getValue().get(1));
-
-                    //System.out.println(directPositionType.getValue().get(0));
-                    //System.out.println(directPositionType.getValue().get(1));
-
-                    point.setZ(directPositionType.getValue().get(2));
-
-                    State state = new State();
-                    state.setPosition(point);
-                    state.setTransitions(transitionList);
-                    stateList.add(state);
-                }
-            }
-
-
-//////////////////Edges- have to search States
-
-            for (int m = 0; m < spaceLayerTypeList.get(n).getEdges().size(); m++) {
-                for (int q = 0; q < spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().size(); q++) {
-                    for (int r = 0; r < spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(q).getTransition().getConnects().size(); r++) {
-
-
-                        TransitionType t1 = spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(q).getTransition();
-                        String Href1=t1.getConnects().get(0).getHref();
-                        String Href2=t1.getConnects().get(1).getHref();
-
-                        //Have to write a method to search State by href
-
-                        State[] stateArray = new State[2];
-                        stateArray[0]= getStateByHref(Href1);;
-                        stateArray[1]= getStateByHref(Href2);;
-
-
-                        Transition transition = new Transition();
-
-                        transition.setWeight(spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(q).getTransition().getWeight());
-                        transition.setStates(stateArray);
-
-                        transitionList.add(transition);
-                    }
-                }
-            }
-
-            stateFloor.setStateMember(stateList);
-            stateOnFloor.add(stateFloor);
-
-            Nodes nodes = new Nodes();
-            nodes.setStateOnFloors(stateOnFloor);
-            nodesList.add(nodes);
-
-            /////////////////////////
-
-            TransitionOnFloor transitionOnFloor=new TransitionOnFloor();
-            transitionOnFloor.setTransitionMember(transitionList);
-            ArrayList<TransitionOnFloor> transitionOnFloorArray = new ArrayList<>();
-
-            transitionOnFloorArray.add(transitionOnFloor);
-
-
-            Edges edges = new Edges();
-            edges.setTransitionOnFloors(transitionOnFloorArray);
-            edgesList.add(edges);
-
-            SpaceLayer spaceLayer = new SpaceLayer();
-            spaceLayer.setNodes(nodesList);
-            spaceLayer.setEdges(edgesList);
-
-            spaceLayerList.add(spaceLayer);
-
-        }
+        spaceLayerList.add(spaceLayer);
 
         SpaceLayers spaceLayers1 = new SpaceLayers();
         spaceLayers1.setSpaceLayerMember(spaceLayerList);
@@ -169,12 +86,85 @@ public class MapperNavigation {
         return multiLayeredGraph;
     }
 
+    private void readUpStateList() {
+        for (int n = 0; n < spaceLayerTypeList.size(); n++) {
+            for (int m = 0; m < spaceLayerTypeList.get(n).getNodes().size(); m++) {
+                for (int p = 0; p < spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().size(); p++) {
+
+                    DirectPositionType directPositionType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getGeometry().getPoint().getPos();
+                    List<TransitionPropertyType> transitionPropertyTypeList = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState().getConnects();
+                    StateType stateType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState();
+
+                    stateTypeArrayList.add(stateType);
+                    stateCreator(stateType);
+                    stateArrayList.add(stateCreator(stateType));
+                }
+            }
+        }
+    }
+
+
+    public void readUpTransitionList() {
+        for (int n = 0; n < spaceLayerTypeList.size(); n++) {
+            for (int m = 0; m < spaceLayerTypeList.get(n).getEdges().size(); m++) {
+                for (int q = 0; q < spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().size(); q++) {
+                    for (int r = 0; r < spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(q).getTransition().getConnects().size(); r++) {
+
+                        TransitionType t1 = spaceLayerTypeList.get(n).getEdges().get(m).getTransitionMember().get(q).getTransition();
+                        //TransitionType has got no values in connects/State
+
+                        StateType[] stateTypeArray = new StateType[2];
+                        stateTypeArray[0] = getStateTypeByHref(t1.getConnects().get(0).getHref());;
+                        stateTypeArray[1] = getStateTypeByHref(t1.getConnects().get(1).getHref());;
+
+                        List<StatePropertyType> statePropertyTypes = new ArrayList<>();
+                        StatePropertyType statePropertyType=new StatePropertyType();
+
+                        statePropertyTypes.add(statePropertyType);
+                        statePropertyTypes.add(statePropertyType);
+                        statePropertyTypes.get(0).setState(stateTypeArray[0]);
+                        statePropertyTypes.get(1).setState(stateTypeArray[1]);
+
+                        t1.setConnects(statePropertyTypes);
+
+                        Transition transition = transitionCreator(t1);
+                        transitionList.add(transition);
+                    }
+                }
+            }
+        }
+    }
+
+    private StateType getStateTypeByHref(String href) {
+        StateType stateType=new StateType();
+        //System.out.println(stateArrayList.get(i).getGmlID());
+        for(int i=0;i<stateTypeArrayList.size();i++){
+            if((stateTypeArrayList.get(i).getId().matches(href.substring(1)))){
+                stateType=stateTypeArrayList.get(i);
+            }
+            break;
+        }
+        return stateType;
+    }
+
+    //Href and GmlID is equal to each other.
+    public State getStateByHref(String Href){
+        State state=new State();
+        //System.out.println(stateArrayList.get(i).getGmlID());
+        for(int i=0;i<stateArrayList.size();i++){
+            if((stateArrayList.get(i).getGmlID().matches(Href.substring(1)))){
+                state=stateArrayList.get(i);
+            }
+            break;
+        }
+        return state;
+    }
+
     public State searchStatebyHref(String Href, MultiLayeredGraphPropertyType multiLayeredGraphPropertyType ) {
         MapperCore mapperCore=new MapperCore();
         //IndoorFeatures indoorFeatures=mapperCore.indoorFeaturesCreator();
         return null;
     }
-
 
     public State stateCreator(StateType stateType) {
         PointPropertyType pointPropertyType = stateType.getGeometry();
@@ -222,17 +212,6 @@ public class MapperNavigation {
         }
     ArrayList<SpaceLayers> spaceLayers=new ArrayList<SpaceLayers>();
     return spaceLayers;
-    }
-
-    //Href and GmlID is equal to each other.
-    public State getStateByHref(String Href){
-        State state=new State();
-        for(int i=0;i<stateArrayList.size();i++){
-            if(stateArrayList.get(i).getGmlID().contentEquals(Href)){
-                return stateArrayList.get(i);
-            }
-        }
-        return null;
     }
 
     public Transition getTransitionByHref(String Href){
