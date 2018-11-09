@@ -22,6 +22,7 @@ public class MapperNavigation {
     private ArrayList<Transition> transitionList;
     private ArrayList<State> stateList;
     private ArrayList<StateType> stateTypeArrayList;
+    private ArrayList<Point> pointArrayList=new ArrayList<>();
 
     public MultiLayeredGraph multiLayeredGraphMapper(MultiLayeredGraphPropertyType multiLayeredGraphPropertyType) {
 
@@ -96,13 +97,15 @@ public class MapperNavigation {
                     StateType stateType = spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().get(p).getState();
 
                     stateTypeArrayList.add(stateType);
-                    stateCreator(stateType);
                     stateArrayList.add(stateCreator(stateType));
+
+                    System.out.println("-->"+ spaceLayerTypeList.get(n).getNodes().get(m).getStateMember().size() +" "+
+                    spaceLayerTypeList.get(n).getNodes().size() + " "+
+                    spaceLayerTypeList.size());
                 }
             }
         }
     }
-
 
     public void readUpTransitionList() {
         for (int n = 0; n < spaceLayerTypeList.size(); n++) {
@@ -119,11 +122,13 @@ public class MapperNavigation {
 
                         List<StatePropertyType> statePropertyTypes = new ArrayList<>();
                         StatePropertyType statePropertyType=new StatePropertyType();
+                        StatePropertyType statePropertyType2=new StatePropertyType();
 
+                        statePropertyType.setState(stateTypeArray[0]);
                         statePropertyTypes.add(statePropertyType);
-                        statePropertyTypes.add(statePropertyType);
-                        statePropertyTypes.get(0).setState(stateTypeArray[0]);
-                        statePropertyTypes.get(1).setState(stateTypeArray[1]);
+
+                        statePropertyType2.setState(stateTypeArray[1]);
+                        statePropertyTypes.add(statePropertyType2);
 
                         t1.setConnects(statePropertyTypes);
 
@@ -135,14 +140,14 @@ public class MapperNavigation {
         }
     }
 
-    private StateType getStateTypeByHref(String href) {
+    private StateType getStateTypeByHref(String Href) {
         StateType stateType=new StateType();
         //System.out.println(stateArrayList.get(i).getGmlID());
         for(int i=0;i<stateTypeArrayList.size();i++){
-            if((stateTypeArrayList.get(i).getId().matches(href.substring(1)))){
+            if((stateTypeArrayList.get(i).getId().matches(Href.substring(1)))){
                 stateType=stateTypeArrayList.get(i);
+                break;
             }
-            break;
         }
         return stateType;
     }
@@ -160,15 +165,9 @@ public class MapperNavigation {
         return state;
     }
 
-    public State searchStatebyHref(String Href, MultiLayeredGraphPropertyType multiLayeredGraphPropertyType ) {
-        MapperCore mapperCore=new MapperCore();
-        //IndoorFeatures indoorFeatures=mapperCore.indoorFeaturesCreator();
-        return null;
-    }
-
     public State stateCreator(StateType stateType) {
         PointPropertyType pointPropertyType = stateType.getGeometry();
-        State state=new State();
+        State state = new State();
         state.setPosition(pointCreator(pointPropertyType.getPoint()));
         state.setGmlID(stateType.getId());
         return state;
@@ -179,22 +178,32 @@ public class MapperNavigation {
         List<Double> list = directPositionType.getValue();
 
         Point point=new Point();
-        point.setRealY(list.get(0));
-        point.setRealX(list.get(1));
+        point.setGMLID(pointType.getId());
+
+        point.setRealX(list.get(0));
+        point.setRealY(list.get(1));
         point.setZ(list.get(2));
+
+        pointArrayList.add(point);
         return point;
     }
 
     public Transition transitionCreator(TransitionType transitionType){
         Transition transition = new Transition();
 
+       // StateType stateType = getStateTypeByHref(transitionType.getConnects().get(0).getState().getHref());
+       // StateType stateType2 = getStateTypeByHref(transitionType.getConnects().get(1).getState().getHref());
+
+        //transitionType.getConnects().
+
+
         State[] statesOfTransition = new State[2];
-        statesOfTransition[0]=stateCreator(transitionType.getConnects().get(0).getState());
-        statesOfTransition[1]=stateCreator(transitionType.getConnects().get(1).getState());
+        statesOfTransition[0] = stateCreator(transitionType.getConnects().get(0).getState());
+        statesOfTransition[1] = stateCreator(transitionType.getConnects().get(1).getState());
 
         AbstractCurveType abstractCurveType = (AbstractCurveType)transitionType.getGeometry().getAbstractCurve().getValue();
         LineStringType lineStringType = (LineStringType) abstractCurveType;
-        LineString path=new LineString();
+        LineString path = new LineString();
 
 
         transition.setStates(statesOfTransition);
