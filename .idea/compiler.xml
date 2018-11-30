@@ -11,11 +11,5 @@
         <module name="MODEL" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="DAO" target="1.5" />
-      <module name="DAO-XML" target="7" />
-      <module name="IndoorEdy" target="7" />
-      <module name="MODEL" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

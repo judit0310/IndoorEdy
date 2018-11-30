@@ -802,7 +802,7 @@
               </gml:exterior>
             </gml:Solid>
           </Geometry3D>
-					</cellSpaceGeometry>
+              </cellSpaceGeometry>
           <duality xlink:href="#R3"/>
           <externalReference>
             <informationSystem>FJK-Haus-LoD4-V3.gml</informationSystem>

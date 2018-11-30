@@ -31,7 +31,7 @@ public class TestNavigationPart {
         MapperNavigation mapperNavigation = new MapperNavigation();
         MultiLayeredGraph multiLayeredGraph = mapperNavigation.multiLayeredGraphMapper(indoorFeaturesType.getMultiLayeredGraph());
 
-        System.out.println("MultilayeredGraph");
+        System.out.println("MultilayeredGraph done.");
         System.out.println(multiLayeredGraph.getSpaceLayers().size());
 
 

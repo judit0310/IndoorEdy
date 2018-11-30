@@ -3,7 +3,6 @@ package hu.iit.uni.miskolc.hu.igml.test;
 
 import hu.iit.uni.miskolc.hu.daoxml.DozerIndoorFeaturesMapper;
 import net.opengis.indoorgml.core.IndoorFeatures;
-import net.opengis.indoorgml.core.PrimalSpaceFeatures;
 import net.opengis.indoorgml.core.v_1_0.IndoorFeaturesType;
 import org.junit.Test;
 
